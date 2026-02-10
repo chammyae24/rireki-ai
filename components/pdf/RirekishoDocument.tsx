@@ -1,17 +1,6 @@
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Font,
-} from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { RirekishoData } from "@/types/resume";
-import {
-  getJapaneseFont,
-  convertToJapaneseDate,
-} from "@/lib/fonts/helpers";
+import { convertToJapaneseDate } from "@/lib/fonts/helpers";
 import { registerFonts as loadFonts } from "@/lib/fonts/registry";
 
 // Register fonts on component load
@@ -269,16 +258,18 @@ export const RirekishoDocument = ({ data }: RirekishoDocumentProps) => {
                   日本語能力試験: {data.skills.jlptLevel}
                 </Text>
               )}
-              {data.skills.technicalSkills && data.skills.technicalSkills.length > 0 && (
-                <Text style={{ marginBottom: 2 }}>
-                  技術スキル: {data.skills.technicalSkills.join(", ")}
-                </Text>
-              )}
-              {data.skills.sswCertificates && data.skills.sswCertificates.length > 0 && (
-                <Text style={{ marginBottom: 2 }}>
-                  SSW資格: {data.skills.sswCertificates.join(", ")}
-                </Text>
-              )}
+              {data.skills.technicalSkills &&
+                data.skills.technicalSkills.length > 0 && (
+                  <Text style={{ marginBottom: 2 }}>
+                    技術スキル: {data.skills.technicalSkills.join(", ")}
+                  </Text>
+                )}
+              {data.skills.sswCertificates &&
+                data.skills.sswCertificates.length > 0 && (
+                  <Text style={{ marginBottom: 2 }}>
+                    SSW資格: {data.skills.sswCertificates.join(", ")}
+                  </Text>
+                )}
             </View>
           </View>
         </View>

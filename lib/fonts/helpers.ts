@@ -1,4 +1,4 @@
-export const getJapaneseFont = (weight: number | string = 400) => {
+export const getJapaneseFont = () => {
   return "NotoSansJP";
 };
 
