@@ -3,6 +3,8 @@
 import { useFormContext } from "react-hook-form";
 import { ControlledInput, DateInput } from "@/components/forms";
 
+import { KatakanaNameInput } from "@/components/forms/KatakanaNameInput";
+
 export const PersonalInfoStep = () => {
   const { watch } = useFormContext();
 
@@ -17,11 +19,7 @@ export const PersonalInfoStep = () => {
           required
         />
 
-        <ControlledInput
-          name="personalInfo.katakanaName"
-          label="Katakana Name"
-          required
-        />
+        <KatakanaNameInput />
 
         <ControlledInput
           name="personalInfo.gender"
