@@ -9,7 +9,6 @@ import {
 } from "@react-pdf/renderer";
 import { RirekishoData } from "@/types/resume";
 import {
-  registerFonts,
   getJapaneseFont,
   convertToJapaneseDate,
 } from "@/lib/fonts/helpers";
@@ -226,6 +225,60 @@ export const RirekishoDocument = ({ data }: RirekishoDocumentProps) => {
               ]}
             >
               <Text>{data.motivation.reasonForApplying}</Text>
+            </View>
+          </View>
+
+          {/* Self-PR */}
+          <View style={[styles.row, { borderBottom: 0 }]}>
+            <View
+              style={[
+                styles.colLabel,
+                { borderBottom: 1, borderBottomColor: "#000" },
+              ]}
+            >
+              <Text>自己PR</Text>
+            </View>
+            <View
+              style={[
+                styles.colValue,
+                { borderBottom: 1, borderBottomColor: "#000" },
+              ]}
+            >
+              <Text>{data.motivation.selfPR}</Text>
+            </View>
+          </View>
+
+          {/* Skills */}
+          <View style={[styles.row, { borderBottom: 0 }]}>
+            <View
+              style={[
+                styles.colLabel,
+                { borderBottom: 1, borderBottomColor: "#000" },
+              ]}
+            >
+              <Text>技能・資格</Text>
+            </View>
+            <View
+              style={[
+                styles.colValue,
+                { borderBottom: 1, borderBottomColor: "#000" },
+              ]}
+            >
+              {data.skills.jlptLevel && (
+                <Text style={{ marginBottom: 2 }}>
+                  日本語能力試験: {data.skills.jlptLevel}
+                </Text>
+              )}
+              {data.skills.technicalSkills && data.skills.technicalSkills.length > 0 && (
+                <Text style={{ marginBottom: 2 }}>
+                  技術スキル: {data.skills.technicalSkills.join(", ")}
+                </Text>
+              )}
+              {data.skills.sswCertificates && data.skills.sswCertificates.length > 0 && (
+                <Text style={{ marginBottom: 2 }}>
+                  SSW資格: {data.skills.sswCertificates.join(", ")}
+                </Text>
+              )}
             </View>
           </View>
         </View>
