@@ -8,6 +8,7 @@ interface ControlledInputProps {
   type?: string;
   placeholder?: string;
   required?: boolean;
+  options?: { value: string; label: string }[];
 }
 
 export const ControlledInput = ({
@@ -16,6 +17,7 @@ export const ControlledInput = ({
   type = "text",
   placeholder,
   required = false,
+  options = [],
 }: ControlledInputProps) => {
   const {
     register,
@@ -42,8 +44,20 @@ export const ControlledInput = ({
             error ? "border-red-500" : "border-gray-300"
           }`}
         >
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          {options.length > 0 ? (
+            options.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))
+          ) : (
+            // Fallback for existing usages if any (e.g. Gender)
+            // Ideally we migrate all select usages to pass options
+            <>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </>
+          )}
         </select>
       ) : (
         <input

@@ -44,6 +44,13 @@ const initialState: RirekishoData = {
     email: "",
     phone: "",
     photoUrl: "",
+    familyDetails: [],
+    physicalStats: {
+      heightCm: 0,
+      weightKg: 0,
+      bloodType: "",
+      handz: "Right",
+    },
   },
   education: [],
   workHistory: [],

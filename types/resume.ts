@@ -1,5 +1,19 @@
 export type VisaTier = "TITP" | "SSW" | "ENGINEER";
 
+export interface FamilyDetail {
+  name: string;
+  relationship: string;
+  age: number;
+  occupation: string;
+}
+
+export interface PhysicalStats {
+  heightCm: number;
+  weightKg: number;
+  bloodType?: string;
+  handz: "Right" | "Left";
+}
+
 export interface RirekishoData {
   tier: VisaTier;
   personalInfo: {
@@ -12,6 +26,8 @@ export interface RirekishoData {
     email: string;
     phone: string;
     photoUrl?: string;
+    familyDetails?: FamilyDetail[];
+    physicalStats?: PhysicalStats;
   };
   education: {
     schoolName: string;

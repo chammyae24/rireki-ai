@@ -1,8 +1,7 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { ControlledInput, DateInput } from "@/components/forms";
-
+import { ControlledInput, DateInput, PhotoUpload } from "@/components/forms";
 import { KatakanaNameInput } from "@/components/forms/KatakanaNameInput";
 
 export const PersonalInfoStep = () => {
@@ -11,6 +10,8 @@ export const PersonalInfoStep = () => {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold">Personal Information</h2>
+
+      <PhotoUpload />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <ControlledInput

@@ -3,6 +3,19 @@ import { z } from "zod";
 const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const familyDetailSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  relationship: z.string().min(1, "Relationship is required"),
+  age: z.coerce.number().min(0).max(120),
+  occupation: z.string().min(1, "Occupation is required"),
+});
+
+const physicalStatsSchema = z.object({
+  heightCm: z.coerce.number().min(50).max(250),
+  weightKg: z.coerce.number().min(20).max(300),
+  bloodType: z.string().optional(),
+  handz: z.enum(["Right", "Left"]),
+});
 export const resumeSchema = z.object({
   tier: z.enum(["TITP", "SSW", "ENGINEER"]),
   personalInfo: z.object({
@@ -15,6 +28,8 @@ export const resumeSchema = z.object({
     email: z.string().regex(emailRegex, "Invalid email format"),
     phone: z.string().regex(phoneRegex, "Invalid phone format"),
     photoUrl: z.string().optional(),
+    familyDetails: z.array(familyDetailSchema).optional(),
+    physicalStats: physicalStatsSchema.optional(),
   }),
   education: z.array(
     z.object({
