@@ -1,7 +1,6 @@
 import { generateObject } from "ai";
 import { z } from "zod";
-// @ts-ignore
-import pdfParse from "pdf-parse";
+import { PDFParse } from "pdf-parse";
 import { getGeminiModelForRequest } from "@/lib/ai/getGeminiModel";
 
 const parsedCVSchema = z.object({
@@ -49,7 +48,17 @@ export async function POST(req: Request) {
     // Parse PDF content
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    const pdfData = await pdfParse(buffer);
+
+    // Explicitly set worker to avoid dynamic import errors in Next.js server environment
+    const workerSrc = new URL(
+      "pdfjs-dist/legacy/build/pdf.worker.mjs",
+      import.meta.url,
+    ).toString();
+
+    PDFParse.setWorker(workerSrc);
+
+    const pdfParser = new PDFParse({ data: buffer });
+    const pdfData = await pdfParser.getText();
     const extractedText = pdfData.text;
 
     const model = await getGeminiModelForRequest(req);
