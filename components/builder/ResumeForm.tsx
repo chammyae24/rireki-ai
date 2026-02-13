@@ -8,6 +8,9 @@ import {
   EducationStep,
   PhysicalStatsStep,
   FamilyDetailsStep,
+  WorkHistoryStep,
+  SkillsStep,
+  MotivationStep,
 } from "./steps";
 
 export const ResumeForm = () => {
@@ -23,30 +26,9 @@ export const ResumeForm = () => {
         ]
       : []),
     { component: <EducationStep />, label: "Education" },
-    {
-      component: (
-        <div className="text-center py-10 text-gray-500">
-          Work History Step (Coming Soon)
-        </div>
-      ),
-      label: "Work History",
-    },
-    {
-      component: (
-        <div className="text-center py-10 text-gray-500">
-          Skills Step (Coming Soon)
-        </div>
-      ),
-      label: "Skills",
-    },
-    {
-      component: (
-        <div className="text-center py-10 text-gray-500">
-          Motivation Step (Coming Soon)
-        </div>
-      ),
-      label: "Motivation",
-    },
+    { component: <WorkHistoryStep />, label: "Work History" },
+    { component: <SkillsStep />, label: "Skills" },
+    { component: <MotivationStep />, label: "Motivation" },
   ];
 
   const totalSteps = steps.length;

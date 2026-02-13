@@ -13,7 +13,7 @@ export async function getGeminiModelForRequest(req: Request) {
     userId === "user_39WSCf5QBqWs5tecrZxwTvcUAYX"
   ) {
     const google = createGoogleGenerativeAI();
-    return google("gemini-2.5-flash");
+    return google("gemini-3-flash-preview");
   }
 
   // Guests / basic users must provide their own Gemini key

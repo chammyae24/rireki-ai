@@ -6,13 +6,13 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const familyDetailSchema = z.object({
   name: z.string().min(1, "Name is required"),
   relationship: z.string().min(1, "Relationship is required"),
-  age: z.coerce.number().min(0).max(120),
+  age: z.any().transform((val) => Number(val)),
   occupation: z.string().min(1, "Occupation is required"),
 });
 
 const physicalStatsSchema = z.object({
-  heightCm: z.coerce.number().min(50).max(250),
-  weightKg: z.coerce.number().min(20).max(300),
+  heightCm: z.any().transform((val) => Number(val)),
+  weightKg: z.any().transform((val) => Number(val)),
   bloodType: z.string().optional(),
   handz: z.enum(["Right", "Left"]),
 });
